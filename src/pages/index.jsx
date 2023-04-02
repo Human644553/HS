@@ -6,7 +6,6 @@ import { Container } from '@/components/Container'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
-import { Container } from '@/components/Container'
 import {
   GitHubIcon,
   InstagramIcon,
@@ -136,7 +135,7 @@ function Newsletter() {
     </form>
   )
 }
-
+// Remove this function
 export async function getStaticProps() {
   const aboutData = await getPageData('NDhP9eC9boesHToaMNvYP');
 
@@ -148,12 +147,11 @@ export async function getStaticProps() {
   };
 }
 
-
 function About({ title, pageCopy }) {
   const paragraphs = pageCopy.content.map((paragraph) =>
     documentToReactComponents(paragraph)
   )
-
+}
 function Resume() {
   let resume = [
     {
@@ -340,4 +338,4 @@ export async function getStaticProps() {
         .map(({ component, ...meta }) => meta),
     },
   }
-}}
+}
