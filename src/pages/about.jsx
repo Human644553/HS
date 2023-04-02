@@ -57,7 +57,7 @@ function About({ title, pageCopy }) {
   return (
     <>
       <Head>
-        <title>About - Spencer Sharp</title>
+        <title>{title}</title>
         <meta
           name="description"
           content="I’m Spencer Sharp. I live in New York City, where I design the future."

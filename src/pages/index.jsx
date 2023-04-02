@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -22,7 +23,7 @@ import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
-import { generateRssFeed } from '@/pages/api/generateRssFeed'
+import { generateRssFeed } from '@/pages/api/generate-feed'
 import { getAllArticles } from '@/pages/api/getAllArticles'
 
 function MailIcon(props) {
@@ -134,17 +135,6 @@ function Newsletter() {
       </div>
     </form>
   )
-}
-// Remove this function
-export async function getStaticProps() {
-  const aboutData = await getPageData('NDhP9eC9boesHToaMNvYP');
-
-  return {
-    props: {
-      aboutData,
-    },
-    revalidate: 60, // Optional: Add revalidate if you want to enable Incremental Static Regeneration
-  };
 }
 
 function About({ title, pageCopy }) {

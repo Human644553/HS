@@ -5,7 +5,6 @@ import { Header } from '@/components/Header'
 
 import '@/styles/tailwind.css'
 import 'focus-visible'
-import { generateRssFeed } from '../api/generate-feed'
 
 function usePrevious(value) {
   let ref = useRef()
@@ -19,10 +18,6 @@ function usePrevious(value) {
 
 export default function App({ Component, pageProps, router }) {
   let previousPathname = usePrevious(router.pathname)
-
-  useEffect(() => {
-    generateRssFeed()
-  }, [])
 
   return (
     <>

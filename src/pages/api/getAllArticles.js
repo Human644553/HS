@@ -3,13 +3,13 @@ import * as path from 'path'
 
 async function importArticle(articleFilename) {
   let { meta, default: component } = await import(
-    `../../src/pages/articles/${articleFilename}`
-  )
+    `../../pages/articles/${articleFilename}`
+  );
   return {
     slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
     ...meta,
     component,
-  }
+  };
 }
 
 export async function getAllArticles() {
