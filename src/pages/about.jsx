@@ -38,19 +38,16 @@ function SocialLink({ className, href, children, icon: Icon }) {
 }
 
 export async function getStaticProps() {
-  const { title, pageCopy } = await getAboutPageData()
-
-  // If title is undefined, set it to an empty string
-  const pageTitle = title || ''
+  const aboutData = await getPageData('6iaDv5fDnZH0S739bktu8Z');
 
   return {
     props: {
-      title: pageTitle,
-      pageCopy,
+      aboutData,
     },
-    revalidate: 60, // Optional: add revalidate if you want to enable Incremental Static Regeneration
-  }
+    revalidate: 60, // Optional: Add revalidate if you want to enable Incremental Static Regeneration
+  };
 }
+
 
 function About({ title, pageCopy }) {
   const paragraphs = pageCopy.content.map((paragraph) =>

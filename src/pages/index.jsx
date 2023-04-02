@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { Container } from '@/components/Container'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -136,6 +137,23 @@ function Newsletter() {
   )
 }
 
+export async function getStaticProps() {
+  const aboutData = await getPageData('NDhP9eC9boesHToaMNvYP');
+
+  return {
+    props: {
+      aboutData,
+    },
+    revalidate: 60, // Optional: Add revalidate if you want to enable Incremental Static Regeneration
+  };
+}
+
+
+function About({ title, pageCopy }) {
+  const paragraphs = pageCopy.content.map((paragraph) =>
+    documentToReactComponents(paragraph)
+  )
+
 function Resume() {
   let resume = [
     {
@@ -251,7 +269,7 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          Spencer Sharp - Software designer, founder, and amateur astronaut
+          {title}
         </title>
         <meta
           name="description"
@@ -261,13 +279,12 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software designer, founder, and amateur astronaut.
+            {title}
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Spencer, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
+            {paragraphs.map((paragraph, index) => (
+                <div key={index}>{paragraph}</div> 
+            ))} 
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
@@ -323,4 +340,4 @@ export async function getStaticProps() {
         .map(({ component, ...meta }) => meta),
     },
   }
-}
+}}
