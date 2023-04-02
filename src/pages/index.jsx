@@ -257,7 +257,7 @@ export default function Home({ articles }) {
     <>
       <Head>
         <title>
-          {title}
+          Discover me, Hardy Schuerhoff
         </title>
         <meta
           name="description"
