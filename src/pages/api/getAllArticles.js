@@ -3,7 +3,7 @@ import * as path from 'path'
 
 async function importArticle(articleFilename) {
   let { meta, default: component } = await import(
-    `../pages/articles/${articleFilename}`
+    `../../src/pages/articles/${articleFilename}`
   )
   return {
     slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),

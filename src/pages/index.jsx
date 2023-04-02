@@ -22,8 +22,8 @@ import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
-import { generateRssFeed } from '@/lib/generateRssFeed'
-import { getAllArticles } from '@/lib/getAllArticles'
+import { generateRssFeed } from '@/pages/api/generateRssFeed'
+import { getAllArticles } from '@/pages/api/getAllArticles'
 
 function MailIcon(props) {
   return (
