@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { Feed } from 'feed';
 import { mkdir, writeFile } from 'fs/promises';
 
-import { getAllArticles } from './getAllArticles';
+import { getAllArticles } from '@/lib/getAllArticles';
 
 const generateRssFeed = async () => {
   let articles = await getAllArticles();
