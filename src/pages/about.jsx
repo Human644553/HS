@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import React, { useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { Container } from '@/components/Container'
 import {
@@ -13,16 +11,18 @@ import {
   TwitterIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
-import { getAboutPageData } from '@/lib/contentful'
 
 function MailIcon(props) {
   return (
-    <svg {...props} viewBox="0 0 24 24">
-      {/* SVG path data for the mail icon */}
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
+      />
     </svg>
   )
 }
-// ... SocialLink, MailIcon components
+
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
@@ -37,30 +37,14 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
-export async function getStaticProps() {
-  const aboutData = await getPageData('6iaDv5fDnZH0S739bktu8Z');
-
-  return {
-    props: {
-      aboutData,
-    },
-    revalidate: 60, // Optional: Add revalidate if you want to enable Incremental Static Regeneration
-  };
-}
-
-
-function About({ title, pageCopy }) {
-  const paragraphs = pageCopy.content.map((paragraph) =>
-    documentToReactComponents(paragraph)
-  )
-
+export default function About() {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>About - Hardy Schuerhoff</title>
         <meta
           name="description"
-          content="I’m Spencer Sharp. I live in New York City, where I design the future."
+          content="A little bit about me."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -72,18 +56,24 @@ function About({ title, pageCopy }) {
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
                 className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-                priority // Add this property
+                priority
               />
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              {title}
+              About me.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              {paragraphs.map((paragraph, index) => (
-                <div key={index}>{paragraph}</div>
-              ))}
+              <p>
+                Replace this copy with your own bio. This page previously
+                pulled its content from Contentful; that integration has been
+                removed, so text is now rendered directly from this component.
+              </p>
+              <p>
+                Edit <code>src/pages/about.jsx</code> to change what appears
+                here.
+              </p>
             </div>
           </div>
           <div className="lg:pl-20">
@@ -101,11 +91,11 @@ function About({ title, pageCopy }) {
                 Follow on LinkedIn
               </SocialLink>
               <SocialLink
-                href="mailto:spencer@planetaria.tech"
+                href="mailto:hello@hardyschuerhoff.com"
                 icon={MailIcon}
                 className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               >
-                spencer@planetaria.tech
+                hello@hardyschuerhoff.com
               </SocialLink>
             </ul>
           </div>
@@ -114,4 +104,3 @@ function About({ title, pageCopy }) {
     </>
   )
 }
-export default About

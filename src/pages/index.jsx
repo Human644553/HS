@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { Container } from '@/components/Container'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -135,11 +134,6 @@ function Newsletter() {
   )
 }
 
-function About({ title, pageCopy }) {
-  const paragraphs = pageCopy.content.map((paragraph) =>
-    documentToReactComponents(paragraph)
-  )
-}
 function Resume() {
   let resume = [
     {
@@ -250,7 +244,7 @@ function Photos() {
   )
 }
 
-export default function Home({ articles }) {
+export default function Home({ articles = [] }) {
   return (
     <>
       <Head>
@@ -259,18 +253,17 @@ export default function Home({ articles }) {
         </title>
         <meta
           name="description"
-          content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+          content="Hardy Schuerhoff — personal website."
         />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            {title}
+            Hi, I&apos;m Hardy.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            {paragraphs.map((paragraph, index) => (
-                <div key={index}>{paragraph}</div> 
-            ))} 
+            Welcome to my personal site. Edit <code>src/pages/index.jsx</code>{' '}
+            to customize this landing page.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
